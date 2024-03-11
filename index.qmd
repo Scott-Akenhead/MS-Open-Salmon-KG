@@ -1,39 +1,38 @@
 ---
-title: La Palma Earthquakes
+title: Toward an Open Salmon Knowledge Graph
 author:
-  - name: Steve Purves
-    orcid: 0000-0002-0760-5497
+  - name: Scott A. Akenhead
+    orcid: 0000-0003-1218-3118
     corresponding: true
-    email: steve@curvenote.com
+    email: scott@s4s.com
     roles:
-      - Investigation
-      - Project administration
+      - Concept and Design
+      - Admin
       - Software
-      - Visualization
+      - Text
     affiliations:
-      - Curvenote
-  - name: Rowan Cockett
-    orcid: 0000-0002-7859-8394
-    corresponding: false
-    roles: []
-    affiliations:
-      - Curvenote
+      - Fisheries and Oceans Canada (retired)
 keywords:
-  - La Palma
-  - Earthquakes
+  - salmon
+  - knowledge graph 
 abstract: |
-  In September 2021, a significant jump in seismic activity on the island of La Palma (Canary Islands, Spain) signaled the start of a volcanic crisis that still continues at the time of writing. Earthquake data is continually collected and published by the Instituto Geográphico Nacional (IGN). ...
+  Goals:  A knowledge graph  for all aspects of salmon science and management. The labels schema (faceted classification) is by and for humans. Attention to using labels in users' interfaces. Rich nodes richly linked. All content from public sources.
 plain-language-summary: |
   Earthquake data for the island of La Palma from the September 2021 eruption is found ...
-key-points:
+key-points: |
   - A web scraping script was developed to pull data from the Instituto Geogràphico Nacional into a machine-readable form for analysis
   - Earthquake events on La Palma are consistent with the presence of both mantle and crustal reservoirs.
 date: last-modified
 bibliography: references.bib
 citation:
-  container-title: Earth and Space Science
+  container-title: A Bunnies Guide to Cosmic String Theory
 number-sections: true
 ---
+
+```{r}
+#| include: false
+library(tidyverse); library(magrittr)
+```
 
 ## Introduction
 
@@ -61,7 +60,9 @@ avg_years_between_eruptions <- mean(diff(eruptions[-n_eruptions]))
 avg_years_between_eruptions
 ```
 
-Based on data up to and including 1971, eruptions on La Palma happen every `r round(avg_years_between_eruptions, 1)` years on average.
+"Knowledge graph" means a neo4j labelled properties graph DB.
+
+Based on data [@akenhead2021] up to and including 1971, eruptions on La Palma happen every `r round(avg_years_between_eruptions, 1)` years on average.
 
 Studies of the magma systems feeding the volcano, such as @marrero2019, have proposed that there are two main magma reservoirs feeding the Cumbre Vieja volcano; one in the mantle (30-40km depth) which charges and in turn feeds a shallower crustal reservoir (10-20km depth).
 
@@ -69,24 +70,30 @@ Eight eruptions have been recorded since the late 1400s (@fig-timeline).
 
 Data and methods are discussed in @sec-data-methods.
 
-Let $x$ denote the number of eruptions in a year. Then, $x$ can be modeled by a Poisson distribution
+We have to salmon-ize this example: The abundance of returning salmon, $R$, that are children of a preceding abundance of spawners, $S$, has conventionally been treated as a simplistic domed function,
 
 $$
-p(x) = \frac{e^{-\lambda} \lambda^{x}}{x !}
-$$ {#eq-poisson}
+R_t = S_{t-4} e^{\alpha-\beta S_{t-4}}
+$$ {#eq-ricker}
 
-where $\lambda$ is the rate of eruptions per year. Using @eq-poisson, the probability of an eruption in the next $t$ years can be calculated.
+where $\alpha$ is initial productivity of a salmon population before the effect, $\beta$, of salmon density reduces survival from spawners to returns. The use of $t-4$ reflect presumption of a four-year life cycle, spawners in 2001 will be returns (to spawn the next generation) in 2005. Using @eq-ricker, rather than the linearized version for ordinary linear regression,
 
-| Name                 | Year   |
-| -------------------- | ------ |
-| Current              | 2021   |
-| Teneguía             | 1971   |
-| Nambroque            | 1949   |
-| El Charco            | 1712   |
-| Volcán San Antonio   | 1677   |
-| Volcán San Martin    | 1646   |
-| Tajuya near El Paso  | 1585   |
-| Montaña Quemada      | 1492   |
+$$
+\text{log}(\frac{R_t}{S_{t-4}}) = \alpha - \beta S_{t-4} + \mathit{N}(0,\sigma)
+$$
+
+which is just plain wrong for many reasons, including undue weight for cases with imprecise estimates at low abundances of $S$. Oops, somebody pushed the button marked *Rant!*
+
+| Name                | Year |
+|---------------------|------|
+| Current             | 2021 |
+| Teneguía            | 1971 |
+| Nambroque           | 1949 |
+| El Charco           | 1712 |
+| Volcán San Antonio  | 1677 |
+| Volcán San Martin   | 1646 |
+| Tajuya near El Paso | 1585 |
+| Montaña Quemada     | 1492 |
 
 : Recent historic eruptions on La Palma {#tbl-history}
 
@@ -94,7 +101,7 @@ where $\lambda$ is the rate of eruptions per year. Using @eq-poisson, the probab
 
 ![Map of La Palma](images/la-palma-map.png){#fig-map}
 
-La Palma is one of the west most islands in the Volcanic Archipelago of the Canary Islands (@fig-map). 
+La Palma is one of the west most islands in the Volcanic Archipelago of the Canary Islands (@fig-map).
 
 {{< embed notebooks/explore-earthquakes.qmd#fig-spatial-plot >}}
 
@@ -106,6 +113,5 @@ La Palma is one of the west most islands in the Volcanic Archipelago of the Cana
 
 ## References {.unnumbered}
 
-:::{#refs}
-
+::: {#refs}
 :::
