@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving
+and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
+
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+
+<front>
+<journal-meta>
+<journal-id></journal-id>
+
+<journal-title-group>
+<journal-title>A Bunnies Guide to Cosmic String Theory</journal-title>
+</journal-title-group>
+<issn></issn>
+
+<publisher>
+<publisher-name></publisher-name>
+</publisher>
+</journal-meta>
+
+
+<article-meta>
+
+
+<title-group>
+<article-title>An Open Salmon Knowledge Graph</article-title>
+<subtitle>cumulative = collaborative</subtitle>
+</title-group>
+
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">0000-0003-1218-3118</contrib-id>
+<name>
+<surname>Akenhead</surname>
+<given-names>Scott A.</given-names>
+</name>
+<string-name>Scott A. Akenhead</string-name>
+
+<email>scott@s4s.com</email>
+<role>Concept</role>
+<role>Admin</role>
+<role vocab="https://credit.niso.org" vocab-term="software" vocab-term-identifier="https://credit.niso.org/contributor-roles/software/">Software</role>
+<role>Text</role>
+<xref ref-type="aff" rid="aff-1">a</xref>
+<xref ref-type="corresp" rid="cor-1">&#x002A;</xref>
+</contrib>
+</contrib-group>
+<aff id="aff-1">
+<institution-wrap>
+<institution>Fisheries and Oceans Canada (retired)</institution>
+</institution-wrap>
+
+
+
+
+
+
+
+</aff>
+<author-notes>
+<corresp id="cor-1">scott@s4s.com</corresp>
+</author-notes>
+
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2024-03-13">
+<year>2024</year>
+<month>3</month>
+<day>13</day>
+</pub-date>
+
+
+
+
+
+
+
+<history></history>
+
+
+<abstract>
+<p>Goals: A knowledge graph for all aspects of salmon science and
+management, with a labels schema (faceted classification) by and for
+humans. Rich nodes richly linked. All content from public sources.</p>
+</abstract>
+<kwd-group kwd-group-type="author">
+<kwd>salmon</kwd>
+<kwd>knowledge graph</kwd>
+</kwd-group>
+
+
+
+
+</article-meta>
+
+</front>
+
+<body>
+<sec id="introduction">
+  <title>1. Introduction</title>
+  <sec id="goal-data-to-decisions">
+    <title>1.1 Goal: data to decisions</title>
+    <p>Overall, conduits from data through analyses to improved
+    decisions about salmon.</p>
+    <list list-type="order">
+      <list-item>
+        <p><bold>Predictions.</bold> Global warming effects – climate
+        chaos– means the historical patterns and correlations in salmon
+        ecology no longer apply; the required assumption of
+        stationarity, of an ergodic system, has been
+        invalidated.Predictions now require understanding how a salmon
+        will react – via physiology, behaviour, survival - to the
+        conditions it will encounter in every habitat throughout its
+        life.</p>
+        <list list-type="alpha-upper">
+          <list-item>
+            <p>This implies models that track individual salmon’s lives
+            across a time-and-space map of habitats, wherein
+            <italic>observed</italic> environmental variables are
+            translated into <italic>perceived</italic> variables that a
+            salmon will respond to.</p>
+          </list-item>
+          <list-item>
+            <p>The result is a <bold>life path</bold><italic>,</italic>
+            a trajectory through multiple dimensions (time, location,
+            fish length, energetics, ontology,) including probability of
+            mortality.</p>
+          </list-item>
+          <list-item>
+            <p>This is an integro-differential equation, where every
+            <italic>rate</italic> (of swimming, of growth,) is a
+            function of the fish <italic>state</italic> and the habitat
+            <italic>state</italic>, when the fish is there.</p>
+          </list-item>
+        </list>
+      </list-item>
+      <list-item>
+        <p><bold>SDM, SKM.</bold> Salmon Data Mobilization Diack et al.
+        (<xref alt="2023" rid="ref-diack2023" ref-type="bibr">2023</xref>)
+        is required to deliver
+        FAIR<xref ref-type="fn" rid="fn1">1</xref> datasets Wilkinson et
+        al.
+        (<xref alt="2016" rid="ref-wilkinson2016" ref-type="bibr">2016</xref>)
+        to for the analyses, insights, and datasets underlying models
+        such as above. This initiative is furthered as Salmon Knowledge
+        Mobilization (<bold>SKM</bold>) to discover and effect
+        collaboration opportunities: <bold>Who is doing what, where,
+        how, and why?</bold></p>
+        <list list-type="alpha-upper">
+          <list-item>
+            <p>The IT to effect this is a Salmon Knowledge Graph
+            (<bold>SKG</bold>) maintained in
+            <ext-link ext-link-type="uri" xlink:href="https://neo4j.com/cloud/platform/aura-graph-database">neo4j
+            Aura</ext-link>. The size and complexity of <italic>all
+            things salmon-related</italic> is challenging but
+            approachable via:</p>
+            <list list-type="roman-lower">
+              <list-item>
+                <p>a <bold>labels schema</bold> that is meaningful to,
+                and created/maintained by, end-users. The SKG must
+                reflect how the salmon community thinks about topics
+                (nodes, entities).</p>
+              </list-item>
+              <list-item>
+                <p><bold>personalization</bold> to reduce presented
+                information to that relevant and important to
+                individuals, to avoid overwhelming, irrelevant
+                information. This cannot preclude discovery of
+                previously remote but potentially valuable
+                knowledge.</p>
+              </list-item>
+              <list-item>
+                <p>myriad <bold>user interfaces</bold>, reflecting
+                myriad activities: planning and management, data
+                processing and analysis, field and lab work, research
+                and modelling, communications and decisions, documents
+                and data products,. Interface components are shared for
+                building new interfaces, and continuously improved.</p>
+              </list-item>
+            </list>
+          </list-item>
+        </list>
+      </list-item>
+      <list-item>
+        <p><bold>Decisions.</bold> From the preceding, decision-support
+        products are proffered to effect better decisions via
+        predictions about <bold>competing scenarios</bold>, presented as
+        interactive graphics and dashboards. Overall, conduits from data
+        through analyses to improved decisions about salmon.</p>
+      </list-item>
+      <list-item>
+        <p><bold>Engagement.</bold> Recognizing that drive-by science is
+        obsolete, the engagement required to communicate effectively
+        with decision-makers is critical Chapman
+        (<xref alt="2019" rid="ref-chapman2019" ref-type="bibr">2019</xref>),
+        Archibald, McIver, and Rangeley
+        (<xref alt="2021" rid="ref-archibald2021" ref-type="bibr">2021</xref>).
+        How to effect such <bold>inclusivity</bold> is a question in
+        hand.</p>
+      </list-item>
+    </list>
+  </sec>
+  <sec id="how">
+    <title>1.2 How?</title>
+    <p>Beyond mobilizing data and mobilizing knowledge, it is necessary
+    that the salmon community mobilize: embrace and implement a paradigm
+    (a change in culture, perspective, attitudes,) that
+    (a) reflects urgency to respond to recent and impending extirpations
+    of salmon populations, and
+    (b) embraces collaboration to deliver that response. This is largely
+    a communications problem with two aspects:</p>
+    <list list-type="order">
+      <list-item>
+        <p>reducing barriers to collabortion</p>
+      </list-item>
+      <list-item>
+        <p>clarifying and enabling benefits from sharing.</p>
+      </list-item>
+    </list>
+  </sec>
+</sec>
+<sec id="proposed">
+  <title>2. Proposed</title>
+  <p>“Knowledge graph” means a neo4j labelled properties graph DB.</p>
+  <p>example: The abundance of returning salmon,
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[R]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>R</mml:mi></mml:math></alternatives></inline-formula>,
+  that are children of a preceding abundance of spawners,
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[S]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>S</mml:mi></mml:math></alternatives></inline-formula>,
+  has conventionally been treated as a simplistic domed function,</p>
+  <p><styled-content id="eq-ricker"><disp-formula><alternatives>
+  <tex-math><![CDATA[
+  R_t = S_{t-4} e^{\alpha-\beta S_{t-4}}
+   \qquad(1)]]></tex-math>
+  <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mi>α</mml:mi><mml:mo>−</mml:mo><mml:mi>β</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msup><mml:mspace width="2.0em"></mml:mspace><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula></styled-content></p>
+  <p>where <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>α</mml:mi></mml:math></alternatives></inline-formula>
+  is initial productivity of a salmon population before the effect,
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>β</mml:mi></mml:math></alternatives></inline-formula>,
+  of salmon density reduces survival from spawners to returns. The use
+  of <inline-formula><alternatives>
+  <tex-math><![CDATA[t-4]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+  reflect presumption of a four-year life cycle, spawners in 2001 will
+  be returns (to spawn the next generation) in 2005. Using
+  <xref alt="Equation 1" rid="eq-ricker">Equation 1</xref> for
+  non-linear fitting is preferable to the linearized version,</p>
+  <p><styled-content id="eq-OLR_Ricker"><disp-formula><alternatives>
+  <tex-math><![CDATA[
+  \text{log}(\frac{R_t}{S_{t-4}}) = \alpha - \beta S_{t-4} + \mathit{N}(0,\sigma)
+   \qquad(2)]]></tex-math>
+  <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mtext mathvariant="normal">log</mml:mtext><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mfrac><mml:msub><mml:mi>R</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub></mml:mfrac><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>α</mml:mi><mml:mo>−</mml:mo><mml:mi>β</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mi>𝑁</mml:mi><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mi>σ</mml:mi><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow><mml:mspace width="2.0em"></mml:mspace><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula></styled-content></p>
+  <p>which is not ordinary linear regression for many reasons including
+  error term without a known distribution (log ratio Poisson variables),
+  predictor variable is part of predicted variable, and undue effect
+  from cases with imprecise estimates at low abundances of
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[S]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>S</mml:mi></mml:math></alternatives></inline-formula>.</p>
+  <fig id="fig-spatial-plot">
+    <caption><p>Figure 1: Locations of earthquakes on La Palma since
+    2017</p></caption>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-explore-earthquakes-fig-spatial-plot-output-1.png" />
+  </fig>
+  <p><xref alt="Figure 1" rid="fig-spatial-plot">Figure 1</xref> shows
+  the location of recent Earthquakes on La Palma.</p>
+</sec>
+<sec id="sec-methods">
+  <title>3. Methods</title>
+</sec>
+<sec id="results">
+  <title>4. Results</title>
+</sec>
+<sec id="conclusion">
+  <title>5. Conclusion</title>
+</sec>
+<sec id="acknowledgements">
+  <title>6. Acknowledgements</title>
+</sec>
+</body>
+
+<back>
+<ref-list>
+  <title>7. References</title>
+  <ref id="ref-diack2023">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Diack</surname><given-names>Graeme</given-names></name>
+        <name><surname>Bird</surname><given-names>Tom</given-names></name>
+        <name><surname>Akenhead</surname><given-names>Scott</given-names></name>
+        <name><surname>Bayer</surname><given-names>Jennifer M.</given-names></name>
+        <name><surname>Brophy</surname><given-names>Deirdre</given-names></name>
+        <name><surname>Bull</surname><given-names>Colin</given-names></name>
+        <name><surname>Eyto</surname><given-names>Elvira de</given-names></name>
+        <name><surname>Hanson</surname><given-names>Nora</given-names></name>
+        <name><surname>Johnson</surname><given-names>Brett</given-names></name>
+        <name><surname>Jones</surname><given-names>Matthew B.</given-names></name>
+        <name><surname>Knight</surname><given-names>Alexis</given-names></name>
+        <name><surname>Nevoux</surname><given-names>Marie</given-names></name>
+        <name><surname>Stap</surname><given-names>Tim C. A. van der</given-names></name>
+        <name><surname>Walker</surname><given-names>Alan</given-names></name>
+      </person-group>
+      <article-title>Salmon data mobilization</article-title>
+      <year iso-8601-date="2023-12-01">2023</year><month>12</month><day>01</day>
+      <uri>https://osf.io/hk4gu</uri>
+    </element-citation>
+  </ref>
+  <ref id="ref-chapman2019">
+    <element-citation publication-type="paper-conference">
+      <person-group person-group-type="author">
+        <name><surname>Chapman</surname><given-names>Kelly</given-names></name>
+      </person-group>
+      <article-title>First international year of the salmon data laboratory (ISDL) workshop</article-title>
+      <publisher-loc>Vancouver, BC, Canada</publisher-loc>
+      <year iso-8601-date="2019">2019</year>
+      <volume>14</volume>
+      <uri>https://npafc.org/wp-content/uploads/technical-reports/Tech-Report-14/Technical-Report-14_Final.pdf</uri>
+      <fpage>15</fpage>
+      <lpage>20</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-archibald2021">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Archibald</surname><given-names>D. W.</given-names></name>
+        <name><surname>McIver</surname><given-names>R.</given-names></name>
+        <name><surname>Rangeley</surname><given-names>R.</given-names></name>
+      </person-group>
+      <article-title>Untimely publications: Delayed Canadian fisheries science advice limits transparency of decision-making</article-title>
+      <source>Marine Policy</source>
+      <year iso-8601-date="2021-10-01">2021</year><month>10</month><day>01</day>
+      <volume>132</volume>
+      <uri>https://www.sciencedirect.com/science/article/pii/S0308597X21003018</uri>
+      <pub-id pub-id-type="doi">10.1016/j.marpol.2021.104690</pub-id>
+      <fpage>104690</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-wilkinson2016">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Wilkinson</surname><given-names>Mark D.</given-names></name>
+        <name><surname>Dumontier</surname><given-names>Michel</given-names></name>
+        <name><surname>Aalbersberg</surname><given-names>IJsbrand Jan</given-names></name>
+        <name><surname>Appleton</surname><given-names>Gabrielle</given-names></name>
+        <name><surname>Axton</surname><given-names>Myles</given-names></name>
+        <name><surname>Baak</surname><given-names>Arie</given-names></name>
+        <name><surname>Blomberg</surname><given-names>Niklas</given-names></name>
+        <name><surname>Boiten</surname><given-names>Jan-Willem</given-names></name>
+        <name><surname>Silva Santos</surname><given-names>Luiz Bonino da</given-names></name>
+        <name><surname>Bourne</surname><given-names>Philip E.</given-names></name>
+        <name><surname>Bouwman</surname><given-names>Jildau</given-names></name>
+        <name><surname>Brookes</surname><given-names>Anthony J.</given-names></name>
+        <name><surname>Clark</surname><given-names>Tim</given-names></name>
+        <name><surname>Crosas</surname><given-names>Mercè</given-names></name>
+        <name><surname>Dillo</surname><given-names>Ingrid</given-names></name>
+        <name><surname>Dumon</surname><given-names>Olivier</given-names></name>
+        <name><surname>Edmunds</surname><given-names>Scott</given-names></name>
+        <name><surname>Evelo</surname><given-names>Chris T.</given-names></name>
+        <name><surname>Finkers</surname><given-names>Richard</given-names></name>
+        <name><surname>Gonzalez-Beltran</surname><given-names>Alejandra</given-names></name>
+        <name><surname>Gray</surname><given-names>Alasdair J. G.</given-names></name>
+        <name><surname>Groth</surname><given-names>Paul</given-names></name>
+        <name><surname>Goble</surname><given-names>Carole</given-names></name>
+        <name><surname>Grethe</surname><given-names>Jeffrey S.</given-names></name>
+        <name><surname>Heringa</surname><given-names>Jaap</given-names></name>
+        <name><surname>’t Hoen</surname><given-names>Peter A. C</given-names></name>
+        <name><surname>Hooft</surname><given-names>Rob</given-names></name>
+        <name><surname>Kuhn</surname><given-names>Tobias</given-names></name>
+        <name><surname>Kok</surname><given-names>Ruben</given-names></name>
+        <name><surname>Kok</surname><given-names>Joost</given-names></name>
+        <name><surname>Lusher</surname><given-names>Scott J.</given-names></name>
+        <name><surname>Martone</surname><given-names>Maryann E.</given-names></name>
+        <name><surname>Mons</surname><given-names>Albert</given-names></name>
+        <name><surname>Packer</surname><given-names>Abel L.</given-names></name>
+        <name><surname>Persson</surname><given-names>Bengt</given-names></name>
+        <name><surname>Rocca-Serra</surname><given-names>Philippe</given-names></name>
+        <name><surname>Roos</surname><given-names>Marco</given-names></name>
+        <name><surname>Schaik</surname><given-names>Rene van</given-names></name>
+        <name><surname>Sansone</surname><given-names>Susanna-Assunta</given-names></name>
+        <name><surname>Schultes</surname><given-names>Erik</given-names></name>
+        <name><surname>Sengstag</surname><given-names>Thierry</given-names></name>
+        <name><surname>Slater</surname><given-names>Ted</given-names></name>
+        <name><surname>Strawn</surname><given-names>George</given-names></name>
+        <name><surname>Swertz</surname><given-names>Morris A.</given-names></name>
+        <name><surname>Thompson</surname><given-names>Mark</given-names></name>
+        <name><surname>Lei</surname><given-names>Johan van der</given-names></name>
+        <name><surname>Mulligen</surname><given-names>Erik van</given-names></name>
+        <name><surname>Velterop</surname><given-names>Jan</given-names></name>
+        <name><surname>Waagmeester</surname><given-names>Andra</given-names></name>
+        <name><surname>Wittenburg</surname><given-names>Peter</given-names></name>
+        <name><surname>Wolstencroft</surname><given-names>Katherine</given-names></name>
+        <name><surname>Zhao</surname><given-names>Jun</given-names></name>
+        <name><surname>Mons</surname><given-names>Barend</given-names></name>
+      </person-group>
+      <article-title>The FAIR guiding principles for scientific data management and stewardship</article-title>
+      <source>Scientific Data</source>
+      <year iso-8601-date="2016-03-15">2016</year><month>03</month><day>15</day>
+      <volume>3</volume>
+      <issue>1</issue>
+      <uri>https://doi.org/10.1038/sdata.2016.18</uri>
+      <pub-id pub-id-type="doi">10.1038/sdata.2016.18</pub-id>
+      <fpage>160018</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+</ref-list>
+<fn-group>
+  <fn id="fn1">
+    <label>1</label><p>FAIR: findable, accessible, interoperable,
+    reusable.</p>
+  </fn>
+</fn-group>
+</back>
+
+<sub-article article-type="notebook" id="nb-8-nb-article">
+<front-stub>
+<title-group>
+<article-title>An Open Salmon Knowledge Graph</article-title>
+<subtitle>cumulative = collaborative</subtitle>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">0000-0003-1218-3118</contrib-id>
+<name>
+<surname>Akenhead</surname>
+<given-names>Scott A.</given-names>
+</name>
+<string-name>Scott A. Akenhead</string-name>
+
+<email>scott@s4s.com</email>
+<role>Concept</role>
+<role>Admin</role>
+<role vocab="https://credit.niso.org" vocab-term="software" vocab-term-identifier="https://credit.niso.org/contributor-roles/software/">Software</role>
+<role>Text</role>
+<xref ref-type="aff" rid="aff-1-nb-article">a</xref>
+<xref ref-type="corresp" rid="cor-1-nb-article">&#x002A;</xref>
+</contrib>
+</contrib-group>
+<aff id="aff-1-nb-article">
+<institution-wrap>
+<institution>Fisheries and Oceans Canada (retired)</institution>
+</institution-wrap>
+
+
+
+
+
+
+
+</aff>
+<author-notes>
+<corresp id="cor-1-nb-article">scott@s4s.com</corresp>
+</author-notes>
+<abstract>
+<p>Goals: A knowledge graph for all aspects of salmon science and
+management, with a labels schema (faceted classification) by and for
+humans. Rich nodes richly linked. All content from public sources.</p>
+</abstract>
+</front-stub>
+
+<body>
+<sec id="nb-code-cell-1-nb-article" specific-use="notebook-code">
+<code language="r script">library(tidyverse); library(magrittr)</code>
+<sec id="nb-code-cell-1-output-0-nb-article" specific-use="notebook-output">
+<preformat>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+
+Attaching package: 'magrittr'
+
+
+The following object is masked from 'package:purrr':
+
+    set_names
+
+
+The following object is masked from 'package:tidyr':
+
+    extract</preformat>
+</sec>
+</sec>
+<sec id="introduction-nb-article">
+  <title>1. Introduction</title>
+  <sec id="goal-data-to-decisions-nb-article">
+    <title>1.1 Goal: data to decisions</title>
+    <p>Overall, conduits from data through analyses to improved
+    decisions about salmon.</p>
+    <list list-type="order">
+      <list-item>
+        <p><bold>Predictions.</bold> Global warming effects – climate
+        chaos– means the historical patterns and correlations in salmon
+        ecology no longer apply; the required assumption of
+        stationarity, of an ergodic system, has been
+        invalidated.Predictions now require understanding how a salmon
+        will react – via physiology, behaviour, survival - to the
+        conditions it will encounter in every habitat throughout its
+        life.</p>
+        <list list-type="alpha-upper">
+          <list-item>
+            <p>This implies models that track individual salmon’s lives
+            across a time-and-space map of habitats, wherein
+            <italic>observed</italic> environmental variables are
+            translated into <italic>perceived</italic> variables that a
+            salmon will respond to.</p>
+          </list-item>
+          <list-item>
+            <p>The result is a <bold>life path</bold><italic>,</italic>
+            a trajectory through multiple dimensions (time, location,
+            fish length, energetics, ontology,) including probability of
+            mortality.</p>
+          </list-item>
+          <list-item>
+            <p>This is an integro-differential equation, where every
+            <italic>rate</italic> (of swimming, of growth,) is a
+            function of the fish <italic>state</italic> and the habitat
+            <italic>state</italic>, when the fish is there.</p>
+          </list-item>
+        </list>
+      </list-item>
+      <list-item>
+        <p><bold>SDM, SKM.</bold> Salmon Data Mobilization Diack et al.
+        (<xref alt="2023" rid="ref-diack2023-nb-article" ref-type="bibr">2023</xref>)
+        is required to deliver
+        FAIR<xref ref-type="fn" rid="fn1-nb-article">1</xref> datasets Wilkinson et
+        al.
+        (<xref alt="2016" rid="ref-wilkinson2016-nb-article" ref-type="bibr">2016</xref>)
+        to for the analyses, insights, and datasets underlying models
+        such as above. This initiative is furthered as Salmon Knowledge
+        Mobilization (<bold>SKM</bold>) to discover and effect
+        collaboration opportunities: <bold>Who is doing what, where,
+        how, and why?</bold></p>
+        <list list-type="alpha-upper">
+          <list-item>
+            <p>The IT to effect this is a Salmon Knowledge Graph
+            (<bold>SKG</bold>) maintained in
+            <ext-link ext-link-type="uri" xlink:href="https://neo4j.com/cloud/platform/aura-graph-database">neo4j
+            Aura</ext-link>. The size and complexity of <italic>all
+            things salmon-related</italic> is challenging but
+            approachable via:</p>
+            <list list-type="roman-lower">
+              <list-item>
+                <p>a <bold>labels schema</bold> that is meaningful to,
+                and created/maintained by, end-users. The SKG must
+                reflect how the salmon community thinks about topics
+                (nodes, entities).</p>
+              </list-item>
+              <list-item>
+                <p><bold>personalization</bold> to reduce presented
+                information to that relevant and important to
+                individuals, to avoid overwhelming, irrelevant
+                information. This cannot preclude discovery of
+                previously remote but potentially valuable
+                knowledge.</p>
+              </list-item>
+              <list-item>
+                <p>myriad <bold>user interfaces</bold>, reflecting
+                myriad activities: planning and management, data
+                processing and analysis, field and lab work, research
+                and modelling, communications and decisions, documents
+                and data products,. Interface components are shared for
+                building new interfaces, and continuously improved.</p>
+              </list-item>
+            </list>
+          </list-item>
+        </list>
+      </list-item>
+      <list-item>
+        <p><bold>Decisions.</bold> From the preceding, decision-support
+        products are proffered to effect better decisions via
+        predictions about <bold>competing scenarios</bold>, presented as
+        interactive graphics and dashboards. Overall, conduits from data
+        through analyses to improved decisions about salmon.</p>
+      </list-item>
+      <list-item>
+        <p><bold>Engagement.</bold> Recognizing that drive-by science is
+        obsolete, the engagement required to communicate effectively
+        with decision-makers is critical Chapman
+        (<xref alt="2019" rid="ref-chapman2019-nb-article" ref-type="bibr">2019</xref>),
+        Archibald, McIver, and Rangeley
+        (<xref alt="2021" rid="ref-archibald2021-nb-article" ref-type="bibr">2021</xref>).
+        How to effect such <bold>inclusivity</bold> is a question in
+        hand.</p>
+      </list-item>
+    </list>
+  </sec>
+  <sec id="how-nb-article">
+    <title>1.2 How?</title>
+    <p>Beyond mobilizing data and mobilizing knowledge, it is necessary
+    that the salmon community mobilize: embrace and implement a paradigm
+    (a change in culture, perspective, attitudes,) that
+    (a) reflects urgency to respond to recent and impending extirpations
+    of salmon populations, and
+    (b) embraces collaboration to deliver that response. This is largely
+    a communications problem with two aspects:</p>
+    <list list-type="order">
+      <list-item>
+        <p>reducing barriers to collabortion</p>
+      </list-item>
+      <list-item>
+        <p>clarifying and enabling benefits from sharing.</p>
+      </list-item>
+    </list>
+  </sec>
+</sec>
+<sec id="proposed-nb-article">
+  <title>2. Proposed</title>
+  <p>“Knowledge graph” means a neo4j labelled properties graph DB.</p>
+  <p>example: The abundance of returning salmon,
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[R]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>R</mml:mi></mml:math></alternatives></inline-formula>,
+  that are children of a preceding abundance of spawners,
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[S]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>S</mml:mi></mml:math></alternatives></inline-formula>,
+  has conventionally been treated as a simplistic domed function,</p>
+  <p><styled-content id="eq-ricker-nb-article"><disp-formula><alternatives>
+  <tex-math><![CDATA[
+  R_t = S_{t-4} e^{\alpha-\beta S_{t-4}}
+   \qquad(1)]]></tex-math>
+  <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mi>α</mml:mi><mml:mo>−</mml:mo><mml:mi>β</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msup><mml:mspace width="2.0em"></mml:mspace><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula></styled-content></p>
+  <p>where <inline-formula><alternatives>
+  <tex-math><![CDATA[\alpha]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>α</mml:mi></mml:math></alternatives></inline-formula>
+  is initial productivity of a salmon population before the effect,
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[\beta]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>β</mml:mi></mml:math></alternatives></inline-formula>,
+  of salmon density reduces survival from spawners to returns. The use
+  of <inline-formula><alternatives>
+  <tex-math><![CDATA[t-4]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>
+  reflect presumption of a four-year life cycle, spawners in 2001 will
+  be returns (to spawn the next generation) in 2005. Using
+  <xref alt="Equation 1" rid="eq-ricker-nb-article">Equation 1</xref> for
+  non-linear fitting is preferable to the linearized version,</p>
+  <p><styled-content id="eq-OLR_Ricker-nb-article"><disp-formula><alternatives>
+  <tex-math><![CDATA[
+  \text{log}(\frac{R_t}{S_{t-4}}) = \alpha - \beta S_{t-4} + \mathit{N}(0,\sigma)
+   \qquad(2)]]></tex-math>
+  <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mtext mathvariant="normal">log</mml:mtext><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mfrac><mml:msub><mml:mi>R</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub></mml:mfrac><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>α</mml:mi><mml:mo>−</mml:mo><mml:mi>β</mml:mi><mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mi>𝑁</mml:mi><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mi>σ</mml:mi><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow><mml:mspace width="2.0em"></mml:mspace><mml:mrow><mml:mo stretchy="true" form="prefix">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true" form="postfix">)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula></styled-content></p>
+  <p>which is not ordinary linear regression for many reasons including
+  error term without a known distribution (log ratio Poisson variables),
+  predictor variable is part of predicted variable, and undue effect
+  from cases with imprecise estimates at low abundances of
+  <inline-formula><alternatives>
+  <tex-math><![CDATA[S]]></tex-math>
+  <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>S</mml:mi></mml:math></alternatives></inline-formula>.</p>
+  <sec id="cell-fig-spatial-plot-nb-article" specific-use="notebook-code">
+  <code language="python">la_palma |&gt; 
+  ggplot(aes(Longitude, Latitude)) +
+  geom_point(aes(color = Magnitude, size = 40-`Depth(km)`)) +
+  scale_color_viridis_c(direction = -1) + 
+  scale_size(range = c(0.5, 2), guide = &quot;none&quot;) +
+  theme_bw()</code>
+  <sec id="cell-fig-spatial-plot-output-0-nb-article" specific-use="notebook-output">
+  <fig id="fig-spatial-plot-nb-article">
+    <caption><p>Figure 1: Locations of earthquakes on La Palma since
+    2017</p></caption>
+    <graphic mimetype="image" mime-subtype="png" xlink:href="index_files/figure-jats/notebooks-explore-earthquakes-fig-spatial-plot-output-1.png" />
+  </fig>
+  </sec>
+  </sec>
+  <p><xref alt="Figure 1" rid="fig-spatial-plot-nb-article">Figure 1</xref> shows
+  the location of recent Earthquakes on La Palma.</p>
+</sec>
+<sec id="sec-methods-nb-article">
+  <title>3. Methods</title>
+</sec>
+<sec id="results-nb-article">
+  <title>4. Results</title>
+</sec>
+<sec id="conclusion-nb-article">
+  <title>5. Conclusion</title>
+</sec>
+<sec id="acknowledgements-nb-article">
+  <title>6. Acknowledgements</title>
+</sec>
+</body>
+
+
+
+<back>
+<ref-list>
+  <title>7. References</title>
+  <ref id="ref-diack2023-nb-article">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Diack</surname><given-names>Graeme</given-names></name>
+        <name><surname>Bird</surname><given-names>Tom</given-names></name>
+        <name><surname>Akenhead</surname><given-names>Scott</given-names></name>
+        <name><surname>Bayer</surname><given-names>Jennifer M.</given-names></name>
+        <name><surname>Brophy</surname><given-names>Deirdre</given-names></name>
+        <name><surname>Bull</surname><given-names>Colin</given-names></name>
+        <name><surname>Eyto</surname><given-names>Elvira de</given-names></name>
+        <name><surname>Hanson</surname><given-names>Nora</given-names></name>
+        <name><surname>Johnson</surname><given-names>Brett</given-names></name>
+        <name><surname>Jones</surname><given-names>Matthew B.</given-names></name>
+        <name><surname>Knight</surname><given-names>Alexis</given-names></name>
+        <name><surname>Nevoux</surname><given-names>Marie</given-names></name>
+        <name><surname>Stap</surname><given-names>Tim C. A. van der</given-names></name>
+        <name><surname>Walker</surname><given-names>Alan</given-names></name>
+      </person-group>
+      <article-title>Salmon data mobilization</article-title>
+      <year iso-8601-date="2023-12-01">2023</year><month>12</month><day>01</day>
+      <uri>https://osf.io/hk4gu</uri>
+    </element-citation>
+  </ref>
+  <ref id="ref-chapman2019-nb-article">
+    <element-citation publication-type="paper-conference">
+      <person-group person-group-type="author">
+        <name><surname>Chapman</surname><given-names>Kelly</given-names></name>
+      </person-group>
+      <article-title>First international year of the salmon data laboratory (ISDL) workshop</article-title>
+      <publisher-loc>Vancouver, BC, Canada</publisher-loc>
+      <year iso-8601-date="2019">2019</year>
+      <volume>14</volume>
+      <uri>https://npafc.org/wp-content/uploads/technical-reports/Tech-Report-14/Technical-Report-14_Final.pdf</uri>
+      <fpage>15</fpage>
+      <lpage>20</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-archibald2021-nb-article">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Archibald</surname><given-names>D. W.</given-names></name>
+        <name><surname>McIver</surname><given-names>R.</given-names></name>
+        <name><surname>Rangeley</surname><given-names>R.</given-names></name>
+      </person-group>
+      <article-title>Untimely publications: Delayed Canadian fisheries science advice limits transparency of decision-making</article-title>
+      <source>Marine Policy</source>
+      <year iso-8601-date="2021-10-01">2021</year><month>10</month><day>01</day>
+      <volume>132</volume>
+      <uri>https://www.sciencedirect.com/science/article/pii/S0308597X21003018</uri>
+      <pub-id pub-id-type="doi">10.1016/j.marpol.2021.104690</pub-id>
+      <fpage>104690</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-wilkinson2016-nb-article">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Wilkinson</surname><given-names>Mark D.</given-names></name>
+        <name><surname>Dumontier</surname><given-names>Michel</given-names></name>
+        <name><surname>Aalbersberg</surname><given-names>IJsbrand Jan</given-names></name>
+        <name><surname>Appleton</surname><given-names>Gabrielle</given-names></name>
+        <name><surname>Axton</surname><given-names>Myles</given-names></name>
+        <name><surname>Baak</surname><given-names>Arie</given-names></name>
+        <name><surname>Blomberg</surname><given-names>Niklas</given-names></name>
+        <name><surname>Boiten</surname><given-names>Jan-Willem</given-names></name>
+        <name><surname>Silva Santos</surname><given-names>Luiz Bonino da</given-names></name>
+        <name><surname>Bourne</surname><given-names>Philip E.</given-names></name>
+        <name><surname>Bouwman</surname><given-names>Jildau</given-names></name>
+        <name><surname>Brookes</surname><given-names>Anthony J.</given-names></name>
+        <name><surname>Clark</surname><given-names>Tim</given-names></name>
+        <name><surname>Crosas</surname><given-names>Mercè</given-names></name>
+        <name><surname>Dillo</surname><given-names>Ingrid</given-names></name>
+        <name><surname>Dumon</surname><given-names>Olivier</given-names></name>
+        <name><surname>Edmunds</surname><given-names>Scott</given-names></name>
+        <name><surname>Evelo</surname><given-names>Chris T.</given-names></name>
+        <name><surname>Finkers</surname><given-names>Richard</given-names></name>
+        <name><surname>Gonzalez-Beltran</surname><given-names>Alejandra</given-names></name>
+        <name><surname>Gray</surname><given-names>Alasdair J. G.</given-names></name>
+        <name><surname>Groth</surname><given-names>Paul</given-names></name>
+        <name><surname>Goble</surname><given-names>Carole</given-names></name>
+        <name><surname>Grethe</surname><given-names>Jeffrey S.</given-names></name>
+        <name><surname>Heringa</surname><given-names>Jaap</given-names></name>
+        <name><surname>’t Hoen</surname><given-names>Peter A. C</given-names></name>
+        <name><surname>Hooft</surname><given-names>Rob</given-names></name>
+        <name><surname>Kuhn</surname><given-names>Tobias</given-names></name>
+        <name><surname>Kok</surname><given-names>Ruben</given-names></name>
+        <name><surname>Kok</surname><given-names>Joost</given-names></name>
+        <name><surname>Lusher</surname><given-names>Scott J.</given-names></name>
+        <name><surname>Martone</surname><given-names>Maryann E.</given-names></name>
+        <name><surname>Mons</surname><given-names>Albert</given-names></name>
+        <name><surname>Packer</surname><given-names>Abel L.</given-names></name>
+        <name><surname>Persson</surname><given-names>Bengt</given-names></name>
+        <name><surname>Rocca-Serra</surname><given-names>Philippe</given-names></name>
+        <name><surname>Roos</surname><given-names>Marco</given-names></name>
+        <name><surname>Schaik</surname><given-names>Rene van</given-names></name>
+        <name><surname>Sansone</surname><given-names>Susanna-Assunta</given-names></name>
+        <name><surname>Schultes</surname><given-names>Erik</given-names></name>
+        <name><surname>Sengstag</surname><given-names>Thierry</given-names></name>
+        <name><surname>Slater</surname><given-names>Ted</given-names></name>
+        <name><surname>Strawn</surname><given-names>George</given-names></name>
+        <name><surname>Swertz</surname><given-names>Morris A.</given-names></name>
+        <name><surname>Thompson</surname><given-names>Mark</given-names></name>
+        <name><surname>Lei</surname><given-names>Johan van der</given-names></name>
+        <name><surname>Mulligen</surname><given-names>Erik van</given-names></name>
+        <name><surname>Velterop</surname><given-names>Jan</given-names></name>
+        <name><surname>Waagmeester</surname><given-names>Andra</given-names></name>
+        <name><surname>Wittenburg</surname><given-names>Peter</given-names></name>
+        <name><surname>Wolstencroft</surname><given-names>Katherine</given-names></name>
+        <name><surname>Zhao</surname><given-names>Jun</given-names></name>
+        <name><surname>Mons</surname><given-names>Barend</given-names></name>
+      </person-group>
+      <article-title>The FAIR guiding principles for scientific data management and stewardship</article-title>
+      <source>Scientific Data</source>
+      <year iso-8601-date="2016-03-15">2016</year><month>03</month><day>15</day>
+      <volume>3</volume>
+      <issue>1</issue>
+      <uri>https://doi.org/10.1038/sdata.2016.18</uri>
+      <pub-id pub-id-type="doi">10.1038/sdata.2016.18</pub-id>
+      <fpage>160018</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+</ref-list>
+<fn-group>
+  <fn id="fn1-nb-article">
+    <label>1</label><p>FAIR: findable, accessible, interoperable,
+    reusable.</p>
+  </fn>
+</fn-group>
+</back>
+
+
+</sub-article>
+<sub-article article-type="notebook" id="nb-4-nb-1">
+<front-stub>
+<title-group>
+<article-title>Explore Earthquakes</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author">
+<name>
+<surname>Wickham</surname>
+<given-names>Charlotte</given-names>
+</name>
+<string-name>Charlotte Wickham</string-name>
+
+</contrib>
+</contrib-group>
+</front-stub>
+
+<body>
+<sec id="nb-code-cell-1-nb-1" specific-use="notebook-code">
+<code language="r script">library(tidyverse)
+</code>
+<sec id="nb-code-cell-1-output-0-nb-1" specific-use="notebook-output">
+<preformat>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</preformat>
+</sec>
+</sec>
+<p>Read a clean version of data:</p>
+<sec id="nb-code-cell-2-nb-1" specific-use="notebook-code">
+<code language="r script">la_palma &lt;- read_csv(&quot;la-palma.csv&quot;)
+</code>
+<sec id="nb-code-cell-2-output-0-nb-1" specific-use="notebook-output">
+<preformat>Rows: 11347 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+dbl  (4): Longitude, Latitude, Depth(km), Magnitude
+dttm (1): DateTime
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</preformat>
+</sec>
+</sec>
+<p>Create spatial plot:</p>
+<sec id="cell-fig-spatial-plot-nb-1" specific-use="notebook-code">
+<code language="r script">#|   against longitude.&quot;
+la_palma |&gt; 
+  ggplot(aes(Longitude, Latitude)) +
+  geom_point(aes(color = Magnitude, size = 40-`Depth(km)`)) +
+  scale_color_viridis_c(direction = -1) + 
+  scale_size(range = c(0.5, 2), guide = &quot;none&quot;) +
+  theme_bw()
+</code>
+<fig id="fig-spatial-plot-nb-1">
+  <caption><p>Locations of earthquakes on La Palma since
+  2017</p></caption>
+  <graphic mimetype="image" mime-subtype="png" xlink:href="explore-earthquakes_files/figure-jats/fig-spatial-plot-1.png" />
+</fig>
+</sec>
+</body>
+
+
+
+<back>
+</back>
+
+
+</sub-article>
+
+</article>

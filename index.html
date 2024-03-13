@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Scott A. Akenhead">
+<meta name="dcterms.date" content="2024-03-13">
+<meta name="keywords" content="salmon, knowledge graph">
+
+<title>An Open Salmon Knowledge Graph</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta name="citation_title" content="An Open Salmon Knowledge Graph">
+<meta name="citation_abstract" content="Goals:  A knowledge graph  for all aspects of salmon science and management, with a labels schema (faceted classification) by and for humans.  Rich nodes richly linked. All content from public sources.
+">
+<meta name="citation_keywords" content="salmon,knowledge graph">
+<meta name="citation_author" content="Scott A. Akenhead">
+<meta name="citation_publication_date" content="2024-03-13">
+<meta name="citation_cover_date" content="2024-03-13">
+<meta name="citation_year" content="2024">
+<meta name="citation_online_date" content="2024-03-13">
+<meta name="citation_language" content="en">
+<meta name="citation_journal_title" content="A Bunnies Guide to Cosmic String Theory">
+<meta name="citation_reference" content="citation_title=Strategies for the development of volcanic hazard maps in monogenetic volcanic fields: The example of La Palma (Canary Islands);,citation_author=José Marrero;,citation_author=Alicia García;,citation_author=Manuel Berrocoso;,citation_author=Ángeles Llinares;,citation_author=Antonio Rodríguez-Losada;,citation_author=R. Ortiz;,citation_publication_date=2019-07;,citation_cover_date=2019-07;,citation_year=2019;,citation_doi=10.1186/s13617-019-0085-5;,citation_volume=8;,citation_journal_title=Journal of Applied Volcanology;">
+<meta name="citation_reference" content="citation_title=The Salmon of Knowledge;,citation_author=Scott Akenhead;,citation_author=George Batten;,citation_author=Tom Bird;,citation_author=James Irvine;,citation_author=Oksana Korol;,citation_author=Chantal Nessman;,citation_author=Peter O’Blenis;,citation_publication_date=2021-11-29;,citation_cover_date=2021-11-29;,citation_year=2021;,citation_fulltext_html_url=https://npafc.org/wp-content/uploads/technical-reports/Tech-Report-17-DOI/40_Akenhead-et-al.pdf;,citation_doi=10.23849/npafctr17/130.134.;,citation_language=en;,citation_journal_title=North Pacific Anadromous Fish Commission Technical Report;">
+<meta name="citation_reference" content="citation_title=Salmon data mobilization;,citation_author=Graeme Diack;,citation_author=Tom Bird;,citation_author=Scott Akenhead;,citation_author=Jennifer M. Bayer;,citation_author=Deirdre Brophy;,citation_author=Colin Bull;,citation_author=Elvira Eyto;,citation_author=Nora Hanson;,citation_author=Brett Johnson;,citation_author=Matthew B. Jones;,citation_author=Alexis Knight;,citation_author=Marie Nevoux;,citation_author=Tim C. A. Stap;,citation_author=Alan Walker;,citation_publication_date=2023-12-01;,citation_cover_date=2023-12-01;,citation_year=2023;,citation_fulltext_html_url=https://osf.io/hk4gu;,citation_language=en-us;">
+<meta name="citation_reference" content="citation_title=First international year of the salmon data laboratory (ISDL) workshop;,citation_author=Kelly Chapman;,citation_publication_date=2019;,citation_cover_date=2019;,citation_year=2019;,citation_fulltext_html_url=https://npafc.org/wp-content/uploads/technical-reports/Tech-Report-14/Technical-Report-14_Final.pdf;,citation_volume=14;">
+<meta name="citation_reference" content="citation_title=Untimely publications: Delayed Canadian fisheries science advice limits transparency of decision-making;,citation_author=D. W. Archibald;,citation_author=R. McIver;,citation_author=R. Rangeley;,citation_publication_date=2021-10-01;,citation_cover_date=2021-10-01;,citation_year=2021;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0308597X21003018;,citation_doi=10.1016/j.marpol.2021.104690;,citation_volume=132;,citation_language=en;,citation_journal_title=Marine Policy;">
+<meta name="citation_reference" content="citation_title=The FAIR guiding principles for scientific data management and stewardship;,citation_author=Mark D. Wilkinson;,citation_author=Michel Dumontier;,citation_author=IJsbrand Jan Aalbersberg;,citation_author=Gabrielle Appleton;,citation_author=Myles Axton;,citation_author=Arie Baak;,citation_author=Niklas Blomberg;,citation_author=Jan-Willem Boiten;,citation_author=Luiz Bonino Silva Santos;,citation_author=Philip E. Bourne;,citation_author=Jildau Bouwman;,citation_author=Anthony J. Brookes;,citation_author=Tim Clark;,citation_author=Mercè Crosas;,citation_author=Ingrid Dillo;,citation_author=Olivier Dumon;,citation_author=Scott Edmunds;,citation_author=Chris T. Evelo;,citation_author=Richard Finkers;,citation_author=Alejandra Gonzalez-Beltran;,citation_author=Alasdair J. G. Gray;,citation_author=Paul Groth;,citation_author=Carole Goble;,citation_author=Jeffrey S. Grethe;,citation_author=Jaap Heringa;,citation_author=Peter A. C Hoen;,citation_author=Rob Hooft;,citation_author=Tobias Kuhn;,citation_author=Ruben Kok;,citation_author=Joost Kok;,citation_author=Scott J. Lusher;,citation_author=Maryann E. Martone;,citation_author=Albert Mons;,citation_author=Abel L. Packer;,citation_author=Bengt Persson;,citation_author=Philippe Rocca-Serra;,citation_author=Marco Roos;,citation_author=Rene Schaik;,citation_author=Susanna-Assunta Sansone;,citation_author=Erik Schultes;,citation_author=Thierry Sengstag;,citation_author=Ted Slater;,citation_author=George Strawn;,citation_author=Morris A. Swertz;,citation_author=Mark Thompson;,citation_author=Johan Lei;,citation_author=Erik Mulligen;,citation_author=Jan Velterop;,citation_author=Andra Waagmeester;,citation_author=Peter Wittenburg;,citation_author=Katherine Wolstencroft;,citation_author=Jun Zhao;,citation_author=Barend Mons;,citation_publication_date=2016-03-15;,citation_cover_date=2016-03-15;,citation_year=2016;,citation_fulltext_html_url=https://doi.org/10.1038/sdata.2016.18;,citation_issue=1;,citation_doi=10.1038/sdata.2016.18;,citation_volume=3;,citation_journal_title=Scientific Data;">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">An Open Salmon Knowledge Graph</h1>
+            <p class="subtitle lead">cumulative = collaborative</p>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+            <div class="quarto-title-meta-author">
+          <div class="quarto-title-meta-heading">Author</div>
+          <div class="quarto-title-meta-heading">Affiliation</div>
+          
+                <div class="quarto-title-meta-contents">
+            <p class="author">Scott A. Akenhead <a href="mailto:scott@s4s.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-1218-3118" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Fisheries and Oceans Canada (retired)
+                      </p>
+                  </div>
+                    </div>
+        
+        <div class="quarto-title-meta">
+
+                      
+                <div>
+            <div class="quarto-title-meta-heading">Published</div>
+            <div class="quarto-title-meta-contents">
+              <p class="date">March 13, 2024</p>
+            </div>
+          </div>
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      <div class="quarto-alternate-formats"><div class="quarto-title-meta-heading">Other Formats</div><div class="quarto-title-meta-contents"><p><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></p></div><div class="quarto-title-meta-contents"><p><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF (agu)</a></p></div><div class="quarto-title-meta-contents"><p><a href="index-meca.zip" data-meca-link="true"><i class="bi bi-archive"></i>MECA Bundle</a></p></div></div></div>
+    </div>
+
+    <div>
+      <div class="abstract">
+        <div class="block-title">Abstract</div>
+        <p>Goals: A knowledge graph for all aspects of salmon science and management, with a labels schema (faceted classification) by and for humans. Rich nodes richly linked. All content from public sources.</p>
+      </div>
+    </div>
+
+    <div>
+      <div class="keywords">
+        <div class="block-title">Keywords</div>
+        <p>salmon, knowledge graph</p>
+      </div>
+    </div>
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#goal-data-to-decisions" id="toc-goal-data-to-decisions" class="nav-link" data-scroll-target="#goal-data-to-decisions"><span class="header-section-number">1.1</span> Goal: data to decisions</a></li>
+  <li><a href="#how" id="toc-how" class="nav-link" data-scroll-target="#how"><span class="header-section-number">1.2</span> How?</a></li>
+  </ul></li>
+  <li><a href="#proposed" id="toc-proposed" class="nav-link" data-scroll-target="#proposed"><span class="header-section-number">2</span> Proposed</a></li>
+  <li><a href="#sec-methods" id="toc-sec-methods" class="nav-link" data-scroll-target="#sec-methods"><span class="header-section-number">3</span> Methods</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">4</span> Results</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5</span> Conclusion</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">6</span> Acknowledgements</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a></li>
+  </ul>
+<div class="quarto-alternate-notebooks"><h2>Notebooks</h2><ul><li><a href="index-preview.html"><i class="bi bi-journal-code"></i>Article Notebook</a></li><li><a href="notebooks/explore-earthquakes-preview.html"><i class="bi bi-journal-code"></i>Explore Earthquakes</a></li></ul></div></nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+  
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="goal-data-to-decisions" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="goal-data-to-decisions"><span class="header-section-number">1.1</span> Goal: data to decisions</h2>
+<p>Overall, conduits from data through analyses to improved decisions about salmon.</p>
+<ol type="1">
+<li><p><strong>Predictions.</strong> Global warming effects – climate chaos– means the historical patterns and correlations in salmon ecology no longer apply; the required assumption of stationarity, of an ergodic system, has been invalidated.Predictions now require understanding how a salmon will react – via physiology, behaviour, survival - to the conditions it will encounter in every habitat throughout its life.</p>
+<ol type="A">
+<li><p>This implies models that track individual salmon’s lives across a time-and-space map of habitats, wherein <em>observed</em> environmental variables are translated into <em>perceived</em> variables that a salmon will respond to.</p></li>
+<li><p>The result is a <strong>life path</strong><em>,</em> a trajectory through multiple dimensions (time, location, fish length, energetics, ontology,) including probability of mortality.</p></li>
+<li><p>This is an integro-differential equation, where every <em>rate</em> (of swimming, of growth,) is a function of the fish <em>state</em> and the habitat <em>state</em>, when the fish is there.</p></li>
+</ol></li>
+<li><p><strong>SDM, SKM.</strong> Salmon Data Mobilization <span class="citation" data-cites="diack2023">Diack et al. (<a href="#ref-diack2023" role="doc-biblioref">2023</a>)</span> is required to deliver FAIR<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> datasets <span class="citation" data-cites="wilkinson2016">Wilkinson et al. (<a href="#ref-wilkinson2016" role="doc-biblioref">2016</a>)</span> to for the analyses, insights, and datasets underlying models such as above. This initiative is furthered as Salmon Knowledge Mobilization (<strong>SKM</strong>) to discover and effect collaboration opportunities: <strong>Who is doing what, where, how, and why?</strong></p>
+<ol type="A">
+<li><p>The IT to effect this is a Salmon Knowledge Graph (<strong>SKG</strong>) maintained in <a href="https://neo4j.com/cloud/platform/aura-graph-database">neo4j Aura</a>. The size and complexity of <em>all things salmon-related</em> is challenging but approachable via:</p>
+<ol type="i">
+<li><p>a <strong>labels schema</strong> that is meaningful to, and created/maintained by, end-users. The SKG must reflect how the salmon community thinks about topics (nodes, entities).</p></li>
+<li><p><strong>personalization</strong> to reduce presented information to that relevant and important to individuals, to avoid overwhelming, irrelevant information. This cannot preclude discovery of previously remote but potentially valuable knowledge.</p></li>
+<li><p>myriad <strong>user interfaces</strong>, reflecting myriad activities: planning and management, data processing and analysis, field and lab work, research and modelling, communications and decisions, documents and data products,. Interface components are shared for building new interfaces, and continuously improved.</p></li>
+</ol></li>
+</ol></li>
+<li><p><strong>Decisions.</strong> From the preceding, decision-support products are proffered to effect better decisions via predictions about <strong>competing scenarios</strong>, presented as interactive graphics and dashboards. Overall, conduits from data through analyses to improved decisions about salmon.</p></li>
+<li><p><strong>Engagement.</strong> Recognizing that drive-by science is obsolete, the engagement required to communicate effectively with decision-makers is critical <span class="citation" data-cites="chapman2019">Chapman (<a href="#ref-chapman2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="archibald2021">Archibald, McIver, and Rangeley (<a href="#ref-archibald2021" role="doc-biblioref">2021</a>)</span>. How to effect such <strong>inclusivity</strong> is a question in hand.</p></li>
+</ol>
+</section>
+<section id="how" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="how"><span class="header-section-number">1.2</span> How?</h2>
+<p>Beyond mobilizing data and mobilizing knowledge, it is necessary that the salmon community mobilize: embrace and implement a paradigm (a change in culture, perspective, attitudes,) that<br>
+(a) reflects urgency to respond to recent and impending extirpations of salmon populations, and<br>
+(b) embraces collaboration to deliver that response. This is largely a communications problem with two aspects:</p>
+<ol type="1">
+<li><p>reducing barriers to collabortion</p></li>
+<li><p>clarifying and enabling benefits from sharing.</p></li>
+</ol>
+</section>
+</section>
+<section id="proposed" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Proposed</h1>
+<p>“Knowledge graph” means a neo4j labelled properties graph DB.</p>
+<p>example: The abundance of returning salmon, <span class="math inline">\(R\)</span>, that are children of a preceding abundance of spawners, <span class="math inline">\(S\)</span>, has conventionally been treated as a simplistic domed function,</p>
+<p><span id="eq-ricker"><span class="math display">\[
+R_t = S_{t-4} e^{\alpha-\beta S_{t-4}}
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is initial productivity of a salmon population before the effect, <span class="math inline">\(\beta\)</span>, of salmon density reduces survival from spawners to returns. The use of <span class="math inline">\(t-4\)</span> reflect presumption of a four-year life cycle, spawners in 2001 will be returns (to spawn the next generation) in 2005. Using <a href="#eq-ricker" class="quarto-xref">Equation&nbsp;1</a> for non-linear fitting is preferable to the linearized version,</p>
+<p><span id="eq-OLR_Ricker"><span class="math display">\[
+\text{log}(\frac{R_t}{S_{t-4}}) = \alpha - \beta S_{t-4} + \mathit{N}(0,\sigma)
+\tag{2}\]</span></span></p>
+<p>which is not ordinary linear regression for many reasons including error term without a known distribution (log ratio Poisson variables), predictor variable is part of predicted variable, and undue effect from cases with imprecise estimates at low abundances of <span class="math inline">\(S\)</span>.</p>
+<div class="quarto-embed-nb-cell">
+<div id="cell-fig-spatial-plot" class="cell" data-message.hidden="true" data-warning.hidden="true">
+<div class="cell-output cell-output-display">
+<div id="fig-spatial-plot" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A scatterplot of earthquake locations plotting latitude against longitude.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spatial-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/notebooks-explore-earthquakes-fig-spatial-plot-output-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Locations of earthquakes on La Palma since 2017"><img src="index_files/figure-html/notebooks-explore-earthquakes-fig-spatial-plot-output-1.png" class="img-fluid figure-img" alt="A scatterplot of earthquake locations plotting latitude against longitude."></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spatial-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Locations of earthquakes on La Palma since 2017
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><a href="#fig-spatial-plot" class="quarto-xref">Figure&nbsp;1</a> shows the location of recent Earthquakes on La Palma.</p>
+</section>
+<section id="sec-methods" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Methods</h1>
+</section>
+<section id="results" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Results</h1>
+</section>
+<section id="conclusion" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Conclusion</h1>
+</section>
+<section id="acknowledgements" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Acknowledgements</h1>
+</section>
+<section id="references" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-archibald2021" class="csl-entry" role="listitem">
+Archibald, D. W., R. McIver, and R. Rangeley. 2021. <span>“Untimely Publications: Delayed Canadian Fisheries Science Advice Limits Transparency of Decision-Making.”</span> <em>Marine Policy</em> 132 (October): 104690. <a href="https://doi.org/10.1016/j.marpol.2021.104690">https://doi.org/10.1016/j.marpol.2021.104690</a>.
+</div>
+<div id="ref-chapman2019" class="csl-entry" role="listitem">
+Chapman, Kelly. 2019. <span>“First International Year of the Salmon Data Laboratory (ISDL) Workshop.”</span> In, 14:15–20. Vancouver, BC, Canada. <a href="https://npafc.org/wp-content/uploads/technical-reports/Tech-Report-14/Technical-Report-14_Final.pdf">https://npafc.org/wp-content/uploads/technical-reports/Tech-Report-14/Technical-Report-14_Final.pdf</a>.
+</div>
+<div id="ref-diack2023" class="csl-entry" role="listitem">
+Diack, Graeme, Tom Bird, Scott Akenhead, Jennifer M. Bayer, Deirdre Brophy, Colin Bull, Elvira de Eyto, et al. 2023. <span>“Salmon Data Mobilization,”</span> December. <a href="https://osf.io/hk4gu">https://osf.io/hk4gu</a>.
+</div>
+<div id="ref-wilkinson2016" class="csl-entry" role="listitem">
+Wilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. <span>“The FAIR Guiding Principles for Scientific Data Management and Stewardship.”</span> <em>Scientific Data</em> 3 (1): 160018. <a href="https://doi.org/10.1038/sdata.2016.18">https://doi.org/10.1038/sdata.2016.18</a>.
+</div>
+</div>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>FAIR: findable, accessible, interoperable, reusable.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{a. akenhead2024,
+  author = {A. Akenhead, Scott},
+  title = {An {Open} {Salmon} {Knowledge} {Graph}},
+  date = {2024-03-13},
+  langid = {en},
+  abstract = {Goals: A knowledge graph for all aspects of salmon science
+    and management, with a labels schema (faceted classification) by and
+    for humans. Rich nodes richly linked. All content from public
+    sources.}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-a. akenhead2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+A. Akenhead, Scott. 2024. <span>“An Open Salmon Knowledge Graph.”</span>
+A Bunnies Guide to Cosmic String Theory. March 13, 2024.
+</div></div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom","selector":".lightbox"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
+
+
+
+
+</body></html>
