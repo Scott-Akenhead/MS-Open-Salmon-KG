@@ -1,12 +1,13 @@
 ---
-title: Toward an Open Salmon Knowledge Graph
+title: An Open Salmon Knowledge Graph
+subtitle: cumulative = collaborative
 author:
   - name: Scott A. Akenhead
     orcid: 0000-0003-1218-3118
     corresponding: true
     email: scott@s4s.com
     roles:
-      - Concept and Design
+      - Concept
       - Admin
       - Software
       - Text
@@ -16,12 +17,13 @@ keywords:
   - salmon
   - knowledge graph 
 abstract: |
-  Goals:  A knowledge graph  for all aspects of salmon science and management. The labels schema (faceted classification) is by and for humans. Attention to using labels in users' interfaces. Rich nodes richly linked. All content from public sources.
+  Goals:  A knowledge graph  for all aspects of salmon science and management, with a labels schema (faceted classification) by and for humans.  Rich nodes richly linked. All content from public sources.
 plain-language-summary: |
-  Earthquake data for the island of La Palma from the September 2021 eruption is found ...
+  A mind map, but large, to share and discover knowledge in the salmon community data. Who is doing what, where, how, and why? ...
 key-points: |
-  - A web scraping script was developed to pull data from the Instituto Geogràphico Nacional into a machine-readable form for analysis
-  - Earthquake events on La Palma are consistent with the presence of both mantle and crustal reservoirs.
+  - A salmon knowledge graph is possible.
+  - Mobilizing salmon knowledge (including datasets and analyses) can be cumulative = collabrative. 
+  - Complicated, so, learn by doing..
 date: last-modified
 bibliography: references.bib
 citation:
@@ -34,84 +36,77 @@ number-sections: true
 library(tidyverse); library(magrittr)
 ```
 
-## Introduction
+# Introduction
 
-```{r}
-eruptions <- c(1492, 1585, 1646, 1677, 1712, 1949, 1971, 2021)
-n_eruptions <- length(eruptions)
-```
+## Goal: data to decisions
 
-```{r}
-#| label: fig-timeline
-#| fig-cap: Timeline of recent earthquakes on La Palma
-#| fig-alt: An event plot of the years of the last 8 eruptions on La Palma.
-#| fig-height: 1.5
-#| fig-width: 6
-par(mar = c(3, 1, 1, 1) + 0.1)
-plot(eruptions, rep(0, n_eruptions), 
-  pch = "|", axes = FALSE)
-axis(1)
-box()
-```
+Overall, conduits from data through analyses to improved decisions about salmon.
 
-```{r}
-#| output: false
-avg_years_between_eruptions <- mean(diff(eruptions[-n_eruptions]))
-avg_years_between_eruptions
-```
+1.  **Predictions.** Global warming effects – climate chaos– means the historical patterns and correlations in salmon ecology no longer apply; the required assumption of stationarity, of an ergodic system, has been invalidated.Predictions now require understanding how a salmon will react – via physiology, behaviour, survival - to the conditions it will encounter in every habitat throughout its life.
+
+    A.  This implies models that track individual salmon's lives across a time-and-space map of habitats, wherein *observed* environmental variables are translated into *perceived* variables that a salmon will respond to.
+
+    B.  The result is a **life path***,* a trajectory through multiple dimensions (time, location, fish length, energetics, ontology,) including probability of mortality.
+
+    C.  This is an integro-differential equation, where every *rate* (of swimming, of growth,) is a function of the fish *state* and the habitat *state*, when the fish is there.
+
+2.  **SDM, SKM.** Salmon Data Mobilization @diack2023 is required to deliver FAIR[^1] datasets @wilkinson2016 to for the analyses, insights, and datasets underlying models such as above. This initiative is furthered as Salmon Knowledge Mobilization (**SKM**) to discover and effect collaboration opportunities: **Who is doing what, where, how, and why?**
+
+    A.  The IT to effect this is a Salmon Knowledge Graph (**SKG**) maintained in [neo4j Aura](https://neo4j.com/cloud/platform/aura-graph-database). The size and complexity of *all things salmon-related* is challenging but approachable via:
+
+        i.  a **labels schema** that is meaningful to, and created/maintained by, end-users. The SKG must reflect how the salmon community thinks about topics (nodes, entities).
+
+        ii. **personalization** to reduce presented information to that relevant and important to individuals, to avoid overwhelming, irrelevant information. This cannot preclude discovery of previously remote but potentially valuable knowledge.
+
+        iii. myriad **user interfaces**, reflecting myriad activities: planning and management, data processing and analysis, field and lab work, research and modelling, communications and decisions, documents and data products,. Interface components are shared for building new interfaces, and continuously improved.
+
+3.  **Decisions.** From the preceding, decision-support products are proffered to effect better decisions via predictions about **competing scenarios**, presented as interactive graphics and dashboards. Overall, conduits from data through analyses to improved decisions about salmon.
+
+4.  **Engagement.** Recognizing that drive-by science is obsolete, the engagement required to communicate effectively with decision-makers is critical @chapman2019, @archibald2021. How to effect such **inclusivity** is a question in hand.
+
+[^1]: FAIR: findable, accessible, interoperable, reusable.
+
+## How?
+
+Beyond mobilizing data and mobilizing knowledge, it is necessary that the salmon community mobilize: embrace and implement a paradigm (a change in culture, perspective, attitudes,) that \
+(a) reflects urgency to respond to recent and impending extirpations of salmon populations, and \
+(b) embraces collaboration to deliver that response. This is largely a communications problem with two aspects:
+
+1.   reducing barriers to collabortion
+
+2.  clarifying and enabling benefits from sharing.
+
+# Proposed
 
 "Knowledge graph" means a neo4j labelled properties graph DB.
 
-Based on data [@akenhead2021] up to and including 1971, eruptions on La Palma happen every `r round(avg_years_between_eruptions, 1)` years on average.
-
-Studies of the magma systems feeding the volcano, such as @marrero2019, have proposed that there are two main magma reservoirs feeding the Cumbre Vieja volcano; one in the mantle (30-40km depth) which charges and in turn feeds a shallower crustal reservoir (10-20km depth).
-
-Eight eruptions have been recorded since the late 1400s (@fig-timeline).
-
-Data and methods are discussed in @sec-data-methods.
-
-We have to salmon-ize this example: The abundance of returning salmon, $R$, that are children of a preceding abundance of spawners, $S$, has conventionally been treated as a simplistic domed function,
+example: The abundance of returning salmon, $R$, that are children of a preceding abundance of spawners, $S$, has conventionally been treated as a simplistic domed function,
 
 $$
 R_t = S_{t-4} e^{\alpha-\beta S_{t-4}}
 $$ {#eq-ricker}
 
-where $\alpha$ is initial productivity of a salmon population before the effect, $\beta$, of salmon density reduces survival from spawners to returns. The use of $t-4$ reflect presumption of a four-year life cycle, spawners in 2001 will be returns (to spawn the next generation) in 2005. Using @eq-ricker, rather than the linearized version for ordinary linear regression,
+where $\alpha$ is initial productivity of a salmon population before the effect, $\beta$, of salmon density reduces survival from spawners to returns. The use of $t-4$ reflect presumption of a four-year life cycle, spawners in 2001 will be returns (to spawn the next generation) in 2005. Using @eq-ricker for non-linear fitting is preferable to the linearized version,
 
 $$
 \text{log}(\frac{R_t}{S_{t-4}}) = \alpha - \beta S_{t-4} + \mathit{N}(0,\sigma)
-$$
+$$ {#eq-OLR_Ricker}
 
-which is just plain wrong for many reasons, including undue weight for cases with imprecise estimates at low abundances of $S$. Oops, somebody pushed the button marked *Rant!*
-
-| Name                | Year |
-|---------------------|------|
-| Current             | 2021 |
-| Teneguía            | 1971 |
-| Nambroque           | 1949 |
-| El Charco           | 1712 |
-| Volcán San Antonio  | 1677 |
-| Volcán San Martin   | 1646 |
-| Tajuya near El Paso | 1585 |
-| Montaña Quemada     | 1492 |
-
-: Recent historic eruptions on La Palma {#tbl-history}
-
-@tbl-history summarises the eruptions recorded since the colonization of the islands by Europeans in the late 1400s.
-
-![Map of La Palma](images/la-palma-map.png){#fig-map}
-
-La Palma is one of the west most islands in the Volcanic Archipelago of the Canary Islands (@fig-map).
+which is not ordinary linear regression for many reasons including error term without a known distribution (log ratio Poisson variables), predictor variable is part of predicted variable, and undue effect from cases with imprecise estimates at low abundances of $S$.
 
 {{< embed notebooks/explore-earthquakes.qmd#fig-spatial-plot >}}
 
 @fig-spatial-plot shows the location of recent Earthquakes on La Palma.
 
-## Data & Methods {#sec-data-methods}
+# Methods {#sec-methods}
 
-## Conclusion
+# Results
 
-## References {.unnumbered}
+# Conclusion
+
+# Acknowledgements
+
+# References
 
 ::: {#refs}
 :::
